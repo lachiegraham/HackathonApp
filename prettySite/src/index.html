@@ -412,6 +412,7 @@
                     } else {
                         output1.textContent = "Not quite! What you said sounded more like " + transcription.text;
                         // Get feedback from ChatGPT
+                        
                         const gptResponse = await fetch('https://api.lemonfox.ai/v1/chat/completions', {
                             method: 'POST',
                             headers: {
@@ -514,6 +515,7 @@
         
                 newWordBtn.addEventListener('click', () => {
                     const feedbackVideo = document.getElementById('feedbackVideo');
+                    feedbackVideo.style.display = "block";
                     feedbackVideo.pause();
                     feedbackModal.hide();
                     currentWord = randomWord;
@@ -527,6 +529,7 @@
                 });
         
                 exportDataBtn.addEventListener('click', async () => {
+                    console.log("AAAA")
                     const gptResponse = await fetch('https://api.lemonfox.ai/v1/chat/completions', {
                         method: 'POST',
                         headers: {
@@ -546,6 +549,7 @@
         
                     const data = await gptResponse.json();
                     const gptAnswer = data.choices[0].message.content;
+                    console.log(gptAnswer)
                     output2.textContent = gptAnswer;
                 });
                 }
