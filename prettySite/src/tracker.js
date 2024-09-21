@@ -5,19 +5,28 @@ let points;
 let canvas;
 
 function setup() {
+  // Create canvas and attach to the div
   canvas = createCanvas(360, 270);
-  canvas.parent('liveTrackDiv'); // Attach to the canvas div
+  canvas.parent('liveTrackDiv');
 
   // Create the video and start face tracking
   video = createCapture(VIDEO);
   video.size(360, 270); // Match the canvas size
   video.parent('videoContainer'); // Attach to the new video container div
+
   const faceOptions = { withLandmarks: true, withExpressions: false, withDescriptors: false };
   faceapi = ml5.faceApi(video, faceOptions, faceReady);
 }
 
+// Show loading modal on page load
+$(document).ready(function() {
+  $('#loadingModal').modal('show');
+});
+
 // Start detecting faces
 function faceReady() {
+  // Hide loading modal when face detection is ready
+  $('#loadingModal').modal('hide');
   faceapi.detect(gotFaces);
 }
 
