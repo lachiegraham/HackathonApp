@@ -59,7 +59,8 @@ function draw() {
         stroke(255, 0, 0);
       }
       strokeWeight(4);
-      point(points[i]._x- leftest, points[i]._y- lowest);
+      point(points[i]._x, points[i]._y);
+      //point(points[i]._x- leftest, points[i]._y- lowest);
     }
   }
 
