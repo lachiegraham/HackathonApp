@@ -14,6 +14,10 @@ function setup() {
   video.size(360, 270); // Match the canvas size
   video.parent('videoContainer'); // Attach to the new video container div
 
+    // request microphone access on startup
+  navigator.mediaDevices
+    .getUserMedia({ video: false, audio: true })
+
   const faceOptions = { withLandmarks: true, withExpressions: false, withDescriptors: false };
   faceapi = ml5.faceApi(video, faceOptions, faceReady);
 }
