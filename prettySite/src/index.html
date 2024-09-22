@@ -256,6 +256,7 @@
 
                 // Create the video element
                 const videoElement = document.createElement('video');
+                videoElement.defaultMuted = true; 
                 videoElement.id = 'feedbackVideo';
                 switch(randomWord) {
                     case "Violin":
