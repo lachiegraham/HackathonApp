@@ -62,29 +62,22 @@ function draw() {
         lowest = points[i]._y;
       }
     }
-
+    leftest -= 30//170
+    lowest-= 10//125
+    scale = 3.7
+    
     for (let i = 48; i < points.length; i++) {
-      stroke(i === 48 ? [0, 255, 0] : [255, 0, 0]);
-      strokeWeight(4);
-      point(points[i]._x, points[i]._y);
+      stroke(255, 0, 0);
+      strokeWeight(3);
+      point((points[i]._x-leftest)*scale, (points[i]._y-lowest)*scale);
+      strokeWeight(1);
+      if (i != 67) {
+        line((points[i]._x-leftest)*scale, (points[i]._y-lowest)*scale,(points[i+1]._x-leftest)*scale, (points[i+1]._y-lowest)*scale)
+      }
+      else {
+        line((points[48]._x-leftest)*scale, (points[48]._y-lowest)*scale,(points[67]._x-leftest)*scale, (points[67]._y-lowest)*scale)
+      }
     }
   }
 }
 
-let outData = [];
-function keyPressed() {
-  // Capture points for labels 'w', 'o', and 'r'
-  const labelMapping = { w: "W label added", o: "O label added", r: "R label added" };
-
-  if (labelMapping[key]) {
-    outData.push({
-      "inputs": points.slice(48, 68).map(p => [p._x, p._y]).flat(),
-      "label": key
-    });
-    print(labelMapping[key]);
-  }
-
-  if (key === '0') {
-    save(outData, 'data.json');
-  }
-}
