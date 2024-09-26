@@ -1,2 +1,2 @@
-# HackathonClinicApp
-For pre-appointment checkups
+# HackathonApp
+AI Speech Therapy
